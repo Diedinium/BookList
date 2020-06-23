@@ -1,0 +1,46 @@
+﻿@page
+@model BookListRazor.Pages.BookList.IndexModel
+@{
+    ViewData["Title"] = "Book List";
+}
+
+
+<h2 class="text-muted d-inline-block">Book List</h2>
+<a class="btn btn-primary float-right" asp-page="Create">Create new book</a>
+
+<hr />
+
+@if (Model.Books.Count() > 0)
+{
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>
+                    <label asp-for="Books.FirstOrDefault().Name"></label>
+                </th>
+                <th>
+                    <label asp-for="Books.FirstOrDefault().Author"></label>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => book.Name)</td>
+                    <td>@Html.DisplayFor(m => book.Author)</td>
+                    <td class="">
+                        <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="/Edit/">Edit</a>
+                        <a class="btn btn-danger mb-sm-0 mb-1 float-right mr-1" asp-page="/Delete/">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-info">Could not find any books to display, consider adding one using the input above.</p>
+}
+
