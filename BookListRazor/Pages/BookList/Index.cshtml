@@ -10,37 +10,91 @@
 
 <hr />
 
+<p class="alert d-none"></p>
+
 @if (Model.Books.Count() > 0)
 {
-    <table class="table table-borderless">
-        <thead>
-            <tr>
-                <th>
-                    <label asp-for="Books.FirstOrDefault().Name"></label>
-                </th>
-                <th>
-                    <label asp-for="Books.FirstOrDefault().Author"></label>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var book in Model.Books)
-            {
+    @Html.AntiForgeryToken();
+    <div class="shadow p-3 rounded">
+        <table class="table table-borderless mb-0">
+            <thead>
                 <tr>
-                    <td>@Html.DisplayFor(m => book.Name)</td>
-                    <td>@Html.DisplayFor(m => book.Author)</td>
-                    <td class="">
-                        <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="/Edit/">Edit</a>
-                        <a class="btn btn-danger mb-sm-0 mb-1 float-right mr-1" asp-page="/Delete/">Delete</a>
-                    </td>
+                    <th>
+                        <label asp-for="Books.FirstOrDefault().Name"></label>
+                    </th>
+                    <th>
+                        <label asp-for="Books.FirstOrDefault().Author"></label>
+                    </th>
+                    <th>
+                        <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.Books)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => book.Name)</td>
+                        <td>@Html.DisplayFor(m => book.Author)</td>
+                        <td>@Html.DisplayFor(m => book.ISBN)</td>
+                        <td class="pr-0">
+                            <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="Edit" asp-route-id="@book.Id">Edit</a>
+                            <a class="btn btn-danger mb-sm-0 mb-1 float-right mr-1 delete" asp-page="Delete" asp-route-id="@book.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
     <p class="alert alert-info">Could not find any books to display, consider adding one using the input above.</p>
 }
+
+<script>
+    $(function () {
+        $('.delete').on('click', function (e) {
+            e.preventDefault();
+            let href = $(this).attr('href');
+            let parentToRemove = $(this).parent().parent();
+            let alert = $('.alert');
+
+            $.ajax({
+                type: "POST",
+                url: href,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val())
+                },
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    alert.html(response.responseMessage);
+                    alert.removeClass('d-none');
+                    alert.addClass('alert-success');
+                    parentToRemove.fadeOut(500).queue(function () {
+                        parentToRemove.remove();
+                    });
+                    setTimeout(function () {
+                        alert.fadeOut(500);
+                        setTimeout(function () {
+                            alert.addClass('d-none');
+                        }, 500);
+                    }, 8000);
+                },
+                failure: function () {
+                    alert.html("Failed to delete book.");
+                    alert.removeClass('d-none');
+                    alert.addClass('alert-danger');
+                    setTimeout(function () {
+                        alert.fadeOut(500);
+                        setTimeout(function () {
+                            alert.addClass('d-none');
+                        }, 500);
+                    }, 8000);
+                }
+            });
+        });
+    });
+</script>
 
