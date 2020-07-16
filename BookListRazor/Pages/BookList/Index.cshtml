@@ -15,8 +15,8 @@
 @if (Model.Books.Count() > 0)
 {
     @Html.AntiForgeryToken();
-    <div class="subtle-shadow p-3 rounded bg-white">
-        <table class="table table-borderless mb-0">
+    <div class="subtle-shadow p-3 rounded bg-white ">
+        <table class="table table-borderless mb-0 wrap">
             <thead>
                 <tr>
                     <th>
@@ -37,7 +37,7 @@
                     <tr>
                         <td>@Html.DisplayFor(m => book.Name)</td>
                         <td>@Html.DisplayFor(m => book.Author)</td>
-                        <td>@Html.DisplayFor(m => book.ISBN)</td>
+                        <td class="text-break">@Html.DisplayFor(m => book.ISBN)</td>
                         <td class="pr-0">
                             <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="Edit" asp-route-id="@book.Id">Edit</a>
                             <a class="btn btn-danger mb-sm-0 mb-1 float-right mr-1 delete" asp-page="Delete" asp-route-id="@book.Id">Delete</a>
@@ -58,7 +58,7 @@ else
 <hr />
 
 <div class="subtle-shadow p-3 rounded mt-2 bg-white">
-    <table id="DT_load" class="table table-borderless">
+    <table id="DT_load" class="table table-borderless text-wrap">
         <thead>
             <tr>
                 <th>Book Name</th>

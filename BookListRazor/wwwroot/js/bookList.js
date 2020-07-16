@@ -15,7 +15,7 @@ function loadDataTable() {
         columns: [
             { data: "name", width: "30%" },
             { data: "author", width: "25%" },
-            { data: "isbn", width: "20%" },
+            { data: "isbn", width: "20%", className: "text-break" },
             {
                 data: "id",
                 render: function (data) {
