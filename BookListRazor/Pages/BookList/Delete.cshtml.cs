@@ -19,7 +19,12 @@ namespace BookListRazor.Pages.BookList
 
         public Book Book { get; set; }
 
-        public async Task<JsonResult> OnPost(int id)
+        public IActionResult OnGet()
+        {
+            return RedirectToPage("Index");
+        }
+
+        public async Task<JsonResult> OnDelete(int id)
         {
             Book = await _db.Book.FindAsync(id);
             _db.Book.Remove(Book);

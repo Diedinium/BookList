@@ -15,7 +15,7 @@
 @if (Model.Books.Count() > 0)
 {
     @Html.AntiForgeryToken();
-    <div class="shadow p-3 rounded">
+    <div class="subtle-shadow p-3 rounded bg-white">
         <table class="table table-borderless mb-0">
             <thead>
                 <tr>
@@ -53,48 +53,43 @@ else
     <p class="alert alert-info">Could not find any books to display, consider adding one using the input above.</p>
 }
 
-<script>
-    $(function () {
-        $('.delete').on('click', function (e) {
-            e.preventDefault();
-            let href = $(this).attr('href');
-            let parentToRemove = $(this).parent().parent();
-            let alert = $('.alert');
+<h3 class="text-muted my-2">Or by DataTable.js</h3>
 
-            $.ajax({
-                type: "POST",
-                url: href,
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val())
-                },
-                contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    alert.html(response.responseMessage);
-                    alert.removeClass('d-none');
-                    alert.addClass('alert-success');
-                    parentToRemove.fadeOut(500).queue(function () {
-                        parentToRemove.remove();
-                    });
-                    setTimeout(function () {
-                        alert.fadeOut(500);
-                        setTimeout(function () {
-                            alert.addClass('d-none');
-                        }, 500);
-                    }, 8000);
-                },
-                failure: function () {
-                    alert.html("Failed to delete book.");
-                    alert.removeClass('d-none');
-                    alert.addClass('alert-danger');
-                    setTimeout(function () {
-                        alert.fadeOut(500);
-                        setTimeout(function () {
-                            alert.addClass('d-none');
-                        }, 500);
-                    }, 8000);
-                }
-            });
-        });
-    });
-</script>
+<hr />
+
+<div class="subtle-shadow p-3 rounded mt-2 bg-white">
+    <table id="DT_load" class="table table-borderless">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>ISBN</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p id="message"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnYes" type="button" class="btn btn-primary">Yes</button>
+                <button id="btnNo" type="button" class="btn btn-danger">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/bookList.js"></script>
+    <script src="~/js/indexDelete.js"></script>
+}
+
 

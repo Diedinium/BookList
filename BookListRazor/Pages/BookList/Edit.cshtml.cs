@@ -16,7 +16,7 @@ namespace BookListRazor.Pages.BookList
         public EditModel(ApplicationDbContext db)
         {
             _db = db;
-        }
+        } 
 
         [BindProperty]
         public Book Book { get; set; }
