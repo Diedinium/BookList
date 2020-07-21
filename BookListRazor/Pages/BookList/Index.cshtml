@@ -10,13 +10,11 @@
 
 <hr />
 
-<p class="alert d-none"></p>
-
 @if (Model.Books.Count() > 0)
 {
     @Html.AntiForgeryToken();
     <div class="subtle-shadow p-3 rounded bg-white ">
-        <table class="table table-borderless mb-0 wrap">
+        <table class="table mb-0 wrap">
             <thead>
                 <tr>
                     <th>
@@ -40,7 +38,7 @@
                         <td class="text-break">@Html.DisplayFor(m => book.ISBN)</td>
                         <td class="pr-0">
                             <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="Edit" asp-route-id="@book.Id">Edit</a>
-                            <a class="btn btn-danger mb-sm-0 mb-1 float-right mr-1 delete" asp-page="Delete" asp-route-id="@book.Id">Delete</a>
+                            <button class="btn btn-danger mb-sm-0 mb-1 float-right mr-1 delete" data-delete-id="@book.Id">Delete</button>
                         </td>
                     </tr>
                 }
@@ -58,7 +56,7 @@ else
 <hr />
 
 <div class="subtle-shadow p-3 rounded mt-2 bg-white">
-    <table id="DT_load" class="table table-borderless text-wrap">
+    <table id="DT_load" class="table text-wrap">
         <thead>
             <tr>
                 <th>Book Name</th>
@@ -87,9 +85,26 @@ else
     </div>
 </div>
 
+<div id="toastContainer">
+
+</div>
+
+<div class="d-none">
+    <div id="toastTemplate" class="toast" role="alert" data-delay="8000">
+        <div class="toast-header">
+            <strong class="mr-auto">Title</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Body
+        </div>
+    </div>
+</div>
+
 @section Scripts{ 
     <script src="~/js/bookList.js"></script>
-    <script src="~/js/indexDelete.js"></script>
 }
 
 
