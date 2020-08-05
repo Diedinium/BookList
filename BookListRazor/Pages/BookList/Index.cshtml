@@ -4,9 +4,8 @@
     ViewData["Title"] = "Book List";
 }
 
-
 <h2 class="text-muted d-inline-block">Book List</h2>
-<a class="btn btn-primary float-right" asp-page="Create">Create new book</a>
+<a class="btn btn-primary float-right" asp-page="Upsert">Create new book</a>
 
 <hr />
 
@@ -37,7 +36,7 @@
                         <td>@Html.DisplayFor(m => book.Author)</td>
                         <td class="text-break">@Html.DisplayFor(m => book.ISBN)</td>
                         <td class="pr-0">
-                            <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="Edit" asp-route-id="@book.Id">Edit</a>
+                            <a class="btn btn-info mb-sm-0 mb-1 float-right mr-1" asp-page="Upsert" asp-route-id="@book.Id">Edit</a>
                             <button class="btn btn-danger mb-sm-0 mb-1 float-right mr-1 delete" data-delete-id="@book.Id">Delete</button>
                         </td>
                     </tr>

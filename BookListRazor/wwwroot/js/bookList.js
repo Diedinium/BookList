@@ -63,7 +63,7 @@ function loadDataTable() {
             {
                 data: "id",
                 render: function (data) {
-                    return `<a href="/BookList/Edit?id=${data}" class="btn btn-primary mr-1 float-right">Edit</a><button class="btn btn-danger mr-1 float-right delete" data-delete-id="${data}">Delete</button>`;
+                    return `<a href="/BookList/Upsert?id=${data}" class="btn btn-primary mr-1 float-right">Edit</a><button class="btn btn-danger mr-1 float-right delete" data-delete-id="${data}">Delete</button>`;
                 },
                 width: "25%",
                 className: "pr-0",

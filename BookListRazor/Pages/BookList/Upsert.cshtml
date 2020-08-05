@@ -1,0 +1,52 @@
+﻿@page
+@model BookListRazor.Pages.BookList.UpsertModel
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<h2 class="text-muted d-inline-block">@(Model.Book.Id != 0 ? "Edit" : "Create")</h2>
+
+<a class="btn btn-info float-right" asp-page="Index">Back</a>
+
+<hr />
+
+<form method="post" class="subtle-shadow p-3 rounded">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Book.Id" />
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label asp-for="Book.Name"></label>
+            <input class="form-control " asp-for="Book.Name" required />
+            <span asp-validation-for="Book.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12">
+            <label asp-for="Book.Author"></label>
+            <input class="form-control" asp-for="Book.Author" />
+        </div>
+        <div class="form-group col-12">
+            <label asp-for="Book.ISBN"></label>
+            <input class="form-control" asp-for="Book.ISBN" />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">@(Model.Book.Id != 0 ? "Update" : "Create")</button>
+    <a class="btn btn-danger" asp-page="Index">Cancel</a>
+</form>
+
+<partial name="_ValidationScriptsPartial" />
+
+<script>
+    $('form').validate({
+        onkeyup: false,
+        rules: {
+            "Book.Name": {
+                required: {
+                    depends: function () {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                }
+            }
+        }
+    });
+</script>
