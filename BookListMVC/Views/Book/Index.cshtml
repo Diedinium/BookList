@@ -1,0 +1,48 @@
+﻿@model BookListMVC.Models.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="withShadow rounded">
+    <div>
+        <h1 class="text-muted d-inline-block">Book List</h1>
+        <a asp-action="Upsert" asp-controller="Book" class="btn btn-primary float-right">Add a book</a>
+    </div>
+
+    <hr />
+
+    @if (Model.Books.Count > 0)
+    {
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>Book Name</th>
+                    <th>Author Name</th>
+                    <th>ISBN</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Book book in Model.Books)
+                {
+                    <tr>
+                        <td>@book.Name</td>
+                        <td>@book.Author</td>
+                        <td>@book.ISBN</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Book" asp-route-id="@book.Id" class="btn btn-info"></a>
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">No books have yet been added, try adding one by clicking "Create a book" above!</div>
+    }
+</div>
+
+
+

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookListRazor", "BookListRazor\BookListRazor.csproj", "{3F47DF0B-D144-4593-86CB-384CFCAEE58F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookListMVC", "BookListMVC\BookListMVC.csproj", "{52E25C6D-480D-48C0-B87C-B9039F0F6D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookListMVC", "BookListMVC\BookListMVC.csproj", "{52E25C6D-480D-48C0-B87C-B9039F0F6D66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

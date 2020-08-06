@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jquery-ajax-unobtrusive/"
+    },
+    {
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.min.js",
+        "jquery.js",
+        "jquery.min.map"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@4.5.2",
+      "destination": "wwwroot/lib/twitter-bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "js/bootstrap.js",
+        "js/bootstrap.bundle.min.js",
+        "js/bootstrap.bundle.js",
+        "css/bootstrap.css",
+        "css/bootstrap.min.css",
+        "css/bootstrap-reboot.min.css",
+        "css/bootstrap-reboot.css",
+        "css/bootstrap-grid.min.css",
+        "css/bootstrap-grid.css"
+      ]
+    }
+  ]
+}
