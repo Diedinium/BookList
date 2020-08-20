@@ -9,4 +9,9 @@ namespace BookListMVC.Models
     {
         public List<Book> Books { get; set; }
     }
+
+    public class CreateModel
+    {
+        public Book Book { get; set; }
+    }
 }

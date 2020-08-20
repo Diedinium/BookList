@@ -73,3 +73,50 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.subtle-shadow {
+    position: relative;
+    background: white;
+}
+
+.subtle-shadow::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+.error {
+    color: red;
+}
+
+.form-control {
+    max-width: 450px;
+}
+
+select.error, textarea.error, input.error {
+    border-color: #A22424;
+}
+
+select.valid, textarea.valid, input.valid {
+    border-color: #50A224;
+}
+
+.form-control.error:focus {
+    border-color: #A22424;
+    box-shadow: 0 0 0 0.2rem rgba(218, 46, 46, 0.25);
+}
+
+.form-control.valid:focus {
+    border-color: #50A224;
+    box-shadow: 0 0 0 0.2rem rgba(80, 162, 36, 0.25);
+}
+
+.table thead th {
+    border-top: 0;
+}
