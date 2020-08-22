@@ -33,7 +33,7 @@
                             <td class="d-flex justify-content-end align-items-center">
                                 <a asp-action="Upsert" asp-controller="Book" asp-route-id="@book.Id" class="btn btn-info ml-2">Edit</a>
                                 <form asp-action="Delete" asp-controller="Book" asp-route-id="@book.Id" data-ajax="true" data-ajax-success="deleteItem(data, this)" data-ajax-failure="deleteItemFail(xhr)" class="">
-                                    <button class="btn btn-danger ml-2" type="submit">Delete</button>
+                                    <button class="btn btn-danger ml-2" type="button" onclick="confirmDelete(this, '@book.Name')">Delete</button>
                                 </form>
                                 @*<a asp-action="delete" asp-controller="book" asp-route-id="@book.id" data-ajax-url="@url.action("delete", "book", new { id = book.id })" data-ajax="true" data-ajax-success="deleteitem(this)" data-ajax-failure="deleteitemfail()" class="btn btn-danger ml-2">delete</a>*@
                             </td>

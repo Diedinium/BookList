@@ -16,14 +16,14 @@ function deleteItemFail(xhr) {
 
 function confirmDialog(message, yesCallback, noCallback) {
     $('#message').html(message);
-    $('#modal').modal('show');
+    $('#confirmModal').modal('show');
 
     $('#btnYes').click(function () {
-        $('#modal').modal('hide');
+        $('#confirmModal').modal('hide');
         yesCallback();
     });
     $('#btnNo').click(function () {
-        $('#modal').modal('hide');
+        $('#confirmModal').modal('hide');
         noCallback();
     });
 }
@@ -38,4 +38,15 @@ function DisplayToast(title, msg, border) {
 
     toastContainer.append(toast);
     toast.toast('show');
+}
+
+function confirmDelete(button, bookName) {
+    confirmDialog(
+        `Are you sure you want to delete "${bookName}"`,
+        function () {
+            $(button).closest('form').submit();
+        },
+        function () {
+            // Do nothing on no callback
+        });
 }
