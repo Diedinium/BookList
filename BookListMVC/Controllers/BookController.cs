@@ -32,6 +32,7 @@ namespace BookListMVC.Controllers
 
             if (id == null)
             {
+                createModel.Book = new Book();
                 return View(createModel);
             }
             else
@@ -76,12 +77,12 @@ namespace BookListMVC.Controllers
             Book book = await _db.Book.FindAsync(id);
             if (book == null)
             {
-                return NotFound();
+                return NotFound(new { code = "404", message = "Not found", detailedMessage = string.Format("Book with id {0} was not found, has it already been deleted (reload the page)", id) });
             }
 
             _db.Remove(book);
             await _db.SaveChangesAsync();
-            return new JsonResult(new { ResponseMessage = "Book successfully removed" });
+            return new JsonResult(new { ResponseMessage = string.Format("Book \"{0}\" successfully removed", book.Name) });
         }
     }
 }

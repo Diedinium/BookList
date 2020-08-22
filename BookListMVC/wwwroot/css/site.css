@@ -120,3 +120,11 @@ select.valid, textarea.valid, input.valid {
 .table thead th {
     border-top: 0;
 }
+
+#toastContainer {
+    padding-top: 70px;
+    padding-right: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+}

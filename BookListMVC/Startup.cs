@@ -27,7 +27,10 @@ namespace BookListMVC
         {
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddMvc(options => 
+            {
+                options.Filters.Add(typeof(JsonExceptionFilter));
+            }).AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
