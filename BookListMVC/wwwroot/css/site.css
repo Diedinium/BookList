@@ -128,3 +128,10 @@ select.valid, textarea.valid, input.valid {
     top: 0;
     right: 0;
 }
+
+.vertical-centre {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    top: 50%;
+}
