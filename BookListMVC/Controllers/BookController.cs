@@ -48,17 +48,18 @@ namespace BookListMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upsert(CreateModel createModel)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(Book book)
         {
             if (ModelState.IsValid)
             {
-                if (createModel.Book.Id == 0)
+                if (book.Id == 0)
                 {
-                    _db.Book.Add(createModel.Book);
+                    _db.Book.Add(book);
                 }
                 else
                 {
-                    _db.Book.Update(createModel.Book);
+                    _db.Book.Update(book);
                 }
 
                 await _db.SaveChangesAsync();
@@ -67,7 +68,7 @@ namespace BookListMVC.Controllers
             }
             else
             {
-                return View(createModel);
+                return View(book);
             }
         }
 
