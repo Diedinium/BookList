@@ -4,7 +4,7 @@
 }
 
 <div class="position-relative">
-    <h1 class="text-muted d-inline-block">Create book</h1>
+    <h1 class="text-muted d-inline-block">@(Model.Book.Id == 0 ? "Create book" : "Update book")</h1>
     <a asp-action="Index" asp-controller="Book" class="btn btn-danger float-right vertical-centre">Cancel</a>
 </div>
 
@@ -29,7 +29,7 @@
     </div>
 
     <input type="hidden" asp-for="Book.Id">
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">@(Model.Book.Id == 0 ? "Create" : "Update")</button>
 </form>
 
 <partial name="_ValidationScriptsPartial" />
